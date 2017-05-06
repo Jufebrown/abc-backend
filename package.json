@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Jufebrown/abc-backend/issues"
   },
-  "homepage": "https://github.com/Jufebrown/abc-backend#readme"
+  "homepage": "https://github.com/Jufebrown/abc-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1"
+  }
 }
