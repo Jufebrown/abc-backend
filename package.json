@@ -18,7 +18,10 @@
   "homepage": "https://github.com/Jufebrown/abc-backend#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
-    "mocha": "^3.3.0",
     "pg": "^6.1.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0"
   }
 }
