@@ -22,12 +22,12 @@
     "bookshelf-cascade-delete": "^2.0.1",
     "express": "^4.15.2",
     "knex": "^0.13.0",
-    "morgan": "^1.8.1",
     "pg": "^6.1.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "morgan": "^1.8.1",
     "mocha": "^3.3.0"
   }
 }
