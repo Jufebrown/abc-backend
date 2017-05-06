@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Jufebrown/abc-backend#readme",
   "dependencies": {
-    "body-parser": "^1.17.1"
+    "body-parser": "^1.17.1",
+    "pg": "^6.1.5"
   }
 }
