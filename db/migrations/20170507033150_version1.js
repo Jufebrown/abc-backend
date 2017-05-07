@@ -1,44 +1,45 @@
 
 exports.up = function(knex, Promise) {
+  return knex.schema
   // adds users table
-  .createTableIfNotExists('users', (table)=> {
-    table.increments()
-    table.string('username').unique().notNullable()
-    table.string('password').notNullable()
+  .createTable('users', (t)=> {
+    t.increments()
+    t.string('username').unique().notNullable()
+    t.string('password').notNullable()
   })
   // adds games table
-  .createTableIfNotExists('games', (table)=> {
-    table.increments()
-    table.string('number_correct')
-    table.string('number_asked')
-    table.boolean('won')
+  .createTable('games', (t)=> {
+    t.increments()
+    t.string('number_correct')
+    t.string('number_asked')
+    t.boolean('won')
   })
   // adds words table
-  .createTableIfNotExists('words', (table)=> {
-    table.increments()
-    table.string('correct_word').notNullable()
+  .createTable('words', (t)=> {
+    t.increments()
+    t.string('correct_word').notNullable()
   })
   // adds friends table
-  .createTableIfNotExists('friends', (table)=> {
-    table.increments()
-    table.string('name').unique().notNullable()
-    table.integer('answers_needed').unsigned().notNullable()
-    table.integer('games_needed').unsigned()
+  .createTable('friends', (t)=> {
+    t.increments()
+    t.string('name').unique().notNullable()
+    t.integer('answers_needed').unsigned().notNullable()
+    t.integer('games_needed').unsigned()
   })
   // adds users_games table
-  .createTableIfNotExists('users_games',(t)=>{
+  .createTable('users_games',(t)=>{
     t.increments()
     t.integer('users_id').unsigned().references('users.id')
     t.integer('games_id').unsigned().references('games.id')
   })
   // adds games_words table
-  .createTableIfNotExists('games_words',(t)=>{
+  .createTable('games_words',(t)=>{
     t.increments()
     t.integer('games_id').unsigned().references('games.id')
     t.integer('words_id').unsigned().references('words.id')
   })
   // adds users_friends table
-  .createTableIfNotExists('users_friends',(t)=>{
+  .createTable('users_friends',(t)=>{
     t.increments()
     t.integer('users_id').unsigned().references('users.id')
     t.integer('friends_id').unsigned().references('friends.id')
