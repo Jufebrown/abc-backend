@@ -6,6 +6,8 @@ exports.up = function(knex, Promise) {
     t.increments()
     t.string('username').unique().notNullable()
     t.string('password').notNullable()
+    t.boolean('admin').notNullable().defaultTo(false);
+    t.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
   })
   // adds games table
   .createTable('games', (t)=> {
