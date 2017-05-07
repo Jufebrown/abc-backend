@@ -1,0 +1,9 @@
+[
+  {"name":"Ant", "answersNeeded":"1", "gamesNeeded":"0"},
+  {"name":"Hamster", "answersNeeded":"5", "gamesNeeded":"0"},
+  {"name":"Dog", "answersNeeded":"10", "gamesNeeded":"0"},
+  {"name":"Cat", "answersNeeded":"25", "gamesNeeded":"0"},
+  {"name":"Rhino", "answersNeeded":"50", "gamesNeeded":"0"},
+  {"name":"Elephant", "answersNeeded":"100", "gamesNeeded":"0"},
+  {"name":"Whale", "answersNeeded":"150", "gamesNeeded":"0"},
+]
