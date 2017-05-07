@@ -46,5 +46,12 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-
+  return knex.schema
+  .dropTableIfExists('users_friends')
+  .dropTableIfExists('games_words')
+  .dropTableIfExists('users_games')
+  .dropTableIfExists('friends')
+  .dropTableIfExists('words')
+  .dropTableIfExists('games')
+  .dropTableIfExists('users')
 };
