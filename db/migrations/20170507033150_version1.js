@@ -46,6 +46,7 @@ exports.up = function(knex, Promise) {
   })
 };
 
+// for rollback
 exports.down = function(knex, Promise) {
   return knex.schema
   .dropTableIfExists('users_friends')
