@@ -1,0 +1,34 @@
+{
+  "name": "abc-backend",
+  "version": "1.0.0",
+  "description": "api for Aidan's Bestial Companions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jufebrown/abc-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jufebrown/abc-backend/issues"
+  },
+  "homepage": "https://github.com/Jufebrown/abc-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "bookshelf": "^0.10.3",
+    "bookshelf-cascade-delete": "^2.0.1",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.4.0",
+    "knex": "^0.13.0",
+    "pg": "^6.1.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "morgan": "^1.8.1",
+    "mocha": "^3.3.0"
+  }
+}
