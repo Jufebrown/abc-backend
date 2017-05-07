@@ -1,0 +1,9 @@
+[
+  {"number_correct":"4", "number_asked":"7", "win":"false"},
+  {"number_correct":"26", "number_asked":"26", "win":"true"},
+  {"number_correct":"23", "number_asked":"26", "win":"true"},
+  {"number_correct":"8", "number_asked":"11", "win":"false"},
+  {"number_correct":"15", "number_asked":"18", "win":"false"},
+  {"number_correct":"22", "number_asked":"25", "win":"false"},
+  {"number_correct":"19", "number_asked":"22", "win":"false"}
+]
