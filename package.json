@@ -4,7 +4,10 @@
   "description": "api for Aidan's Bestial Companions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:reset": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "db:reset-test": "knex migrate:rollback --env test && knex migrate:latest --env test && knex seed:run --env test",
+    "start": "nodemon bin/zoo",
+    "test": "nodemon --exec \"mocha --recursive\" -R list"
   },
   "repository": {
     "type": "git",
