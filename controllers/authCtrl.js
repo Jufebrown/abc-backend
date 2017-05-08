@@ -51,14 +51,13 @@ module.exports.login = (req, res, next) => {
       status: 'error'
     })
   })
+}
 
-  module.exports.authenticated = (req, res, next) => {
-    Auth.ensureAuthenticated()
-    .then((res) => {
-      res.status(200).json({
-        status: 'success',
-      })
+module.exports.makeSureAuthenticated = (req, res, next) => {
+  Auth.ensureAuthenticated()
+  .then((res) => {
+    res.status(200).json({
+      status: 'success',
     })
-  }
-
+  })
 }
