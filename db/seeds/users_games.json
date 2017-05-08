@@ -1,4 +1,4 @@
 [
-  {"users_id":"1", "games_id":"1"},
-  {"users_id":"1", "games_id":"2"}
+  {"user_id":"1", "game_id":"1"},
+  {"user_id":"1", "game_id":"2"}
 ]
