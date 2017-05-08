@@ -7,7 +7,9 @@ const {bookshelf} = require('../db/database')
 // require('./userGame')
 
 const Game = bookshelf.Model.extend({
-  tableName: 'games'
+  tableName: 'games',
+  // sets relationship with words
+  user: function () { return this.belongsToMany('User').through('userGame')}
   // sets relationship with words
   // words: function () { return this.belongsToMany('Word').through('gameWord')},
 }, {
