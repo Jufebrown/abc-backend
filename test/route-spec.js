@@ -120,6 +120,42 @@ describe('abc routes', ()=>{
     });
   });
 
+  // tests user endpoint
+  describe('GET /auth/user', () => {
+    it('should return a success', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jeremy',
+        password: 'johnson123'
+      })
+      .end((error, response) => {
+        should.not.exist(error);
+        chai.request(server)
+        .get('/api/v1/auth/user')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err);
+          res.status.should.eql(200);
+          res.type.should.eql('application/json');
+          res.body.status.should.eql('success');
+          done();
+        });
+      });
+    });
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err);
+        res.status.should.eql(400);
+        res.type.should.eql('application/json');
+        res.body.status.should.eql('Please log in');
+        done();
+      });
+    });
+  });
+
   // tests getting all games
   describe(`GET /api/v1/games`, function() {
     it(`should return all games`, function() {
@@ -139,7 +175,7 @@ describe('abc routes', ()=>{
   describe(`GET /api/v1/games`, function() {
     it(`should return all games for user 1`, function() {
       return chai.request(server)
-        .get(`/api/v1/users/games?userId=1`).then(res => {
+        .get(`/api/v1/auth/games?userId=1`).then(res => {
           res.should.have.status(200)
           res.should.be.json
           res.body.should.be.a.object
