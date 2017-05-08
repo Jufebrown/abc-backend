@@ -5,6 +5,6 @@ const router = Router()
 
 const {getAllGames} = require('../controllers/gamesCtrl')
 
-router.get('/games', getAllGames)
+router.get('/games', getGames)
 
 module.exports = router
