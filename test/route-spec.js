@@ -130,31 +130,31 @@ describe('abc routes', ()=>{
         password: 'password'
       })
       .end((error, response) => {
-        should.not.exist(error);
+        should.not.exist(error)
         chai.request(server)
         .get('/api/v1/auth/user')
         .set('authorization', 'Bearer ' + response.body.token)
         .end((err, res) => {
-          should.not.exist(err);
-          res.status.should.eql(200);
-          res.type.should.eql('application/json');
-          res.body.status.should.eql('success');
-          done();
-        });
-      });
-    });
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
+          res.body.status.should.eql('success')
+          done()
+        })
+      })
+    })
     it('should throw an error if a user is not logged in', (done) => {
       chai.request(server)
       .get('/api/v1/auth/user')
       .end((err, res) => {
-        should.exist(err);
-        res.status.should.eql(400);
-        res.type.should.eql('application/json');
-        res.body.status.should.eql('Please log in');
-        done();
-      });
-    });
-  });
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
 
   // tests getting all games
   describe(`GET /api/v1/games`, function() {
