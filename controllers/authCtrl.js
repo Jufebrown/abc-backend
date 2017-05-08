@@ -16,19 +16,19 @@ module.exports.getUserGames = ({query: {userId}}, res, next) => {
 }
 
 module.exports.register = (req, res, next) => {
-  return Auth.createUser(req)
-  .then((user) => { return localAuth.encodeToken(user[0]); })
+  Auth.createUser(req)
+  .then((user) => { return localAuth.encodeToken(user[0]) })
   .then((token) => {
     res.status(200).json({
       status: 'success',
       token: token
-    });
+    })
   })
   .catch((err) => {
     res.status(500).json({
       status: 'error'
-    });
-  });
+    })
+  })
 }
 
 module.exports.login = (req, res, next) => {
