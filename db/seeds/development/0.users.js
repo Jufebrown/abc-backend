@@ -8,10 +8,10 @@ exports.seed = function(knex, Promise) {
   return knex('users').del()
   .then(() => {
     const salt = bcrypt.genSaltSync();
-    const hash = bcrypt.hashSync('johnson123', salt);
+    const hash = bcrypt.hashSync('password', salt);
     return Promise.join(
       knex('users').insert({
-        username: 'jeremy',
+        username: 'jufe',
         password: hash
       })
     );
