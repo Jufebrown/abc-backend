@@ -57,7 +57,7 @@ describe('abc routes', ()=>{
           res.should.have.status(200)
           res.should.be.json
           res.should.be.a.object
-          res.body.should.have.key(['games','userAndTheirGames', 'register', 'login'])
+          res.body.should.have.key(['games','userAndTheirGames', 'register', 'login', 'user'])
         })
     })
   });
@@ -126,8 +126,8 @@ describe('abc routes', ()=>{
       chai.request(server)
       .post('/api/v1/auth/login')
       .send({
-        username: 'jeremy',
-        password: 'johnson123'
+        username: 'jufe',
+        password: 'password'
       })
       .end((error, response) => {
         should.not.exist(error);

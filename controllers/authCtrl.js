@@ -32,23 +32,33 @@ module.exports.register = (req, res, next) => {
 }
 
 module.exports.login = (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  return Auth.getUser(username)
+  const username = req.body.username
+  const password = req.body.password
+  Auth.getUser(username)
   .then((response) => {
-    Auth.comparePass(password, response.password);
-    return response;
+    Auth.comparePass(password, response.password)
+    return response
   })
-  .then((response) => { return localAuth.encodeToken(response); })
+  .then((response) => { return localAuth.encodeToken(response) })
   .then((token) => {
     res.status(200).json({
       status: 'success',
       token: token
-    });
+    })
   })
   .catch((err) => {
     res.status(500).json({
       status: 'error'
-    });
-  });
+    })
+  })
+
+  module.exports.authenticated = (req, res, next) => {
+    Auth.ensureAuthenticated()
+    .then((res) => {
+      res.status(200).json({
+        status: 'success',
+      })
+    })
+  }
+
 }
