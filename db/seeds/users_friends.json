@@ -1,5 +1,5 @@
 [
-  {"usersId":"1", "friendsId":"1"},
-  {"usersId":"1", "friendsId":"2"},
-  {"usersId":"1", "friendsId":"3"}
+  {"users_id":"1", "friends_id":"1"},
+  {"users_id":"1", "friends_id":"2"},
+  {"users_id":"1", "friends_id":"3"}
 ]

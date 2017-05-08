@@ -1,9 +1,9 @@
 [
-  {"name":"Ant", "answersNeeded":"1", "gamesNeeded":"0"},
-  {"name":"Hamster", "answersNeeded":"5", "gamesNeeded":"0"},
-  {"name":"Dog", "answersNeeded":"10", "gamesNeeded":"0"},
-  {"name":"Cat", "answersNeeded":"25", "gamesNeeded":"0"},
-  {"name":"Rhino", "answersNeeded":"50", "gamesNeeded":"0"},
-  {"name":"Elephant", "answersNeeded":"100", "gamesNeeded":"0"},
-  {"name":"Whale", "answersNeeded":"150", "gamesNeeded":"0"},
+  {"name":"Ant", "answers_needed":"1", "games_needed":"0"},
+  {"name":"Hamster", "answers_needed":"5", "games_needed":"0"},
+  {"name":"Dog", "answers_needed":"10", "games_needed":"0"},
+  {"name":"Cat", "answers_needed":"25", "games_needed":"0"},
+  {"name":"Rhino", "answers_needed":"50", "games_needed":"0"},
+  {"name":"Elephant", "answers_needed":"100", "games_needed":"0"},
+  {"name":"Whale", "answers_needed":"150", "games_needed":"0"},
 ]
