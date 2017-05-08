@@ -83,10 +83,11 @@ describe('abc routes', ()=>{
     });
   });
 
+  // tests login route
   describe('POST /auth/login', () => {
     it('should login a user', (done) => {
       chai.request(server)
-      .post('/auth/login')
+      .post('/api/v1/auth/login')
       .send({
         username: 'jufe',
         password: 'password'
