@@ -55,7 +55,7 @@ describe('abc routes', ()=>{
   describe(`GET /api/v1/games`, function() {
     it(`should return all games`, function() {
       return chai.request(server)
-        .get(`/api/v1/games/user="1"`).then(res => {
+        .get(`/api/v1/users/games`).then(res => {
           res.should.have.status(200)
           res.should.be.json
           res.body.should.be.a.object
