@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Jufebrown/abc-backend#readme",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",
     "bookshelf-cascade-delete": "^2.0.1",
