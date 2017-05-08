@@ -11,7 +11,6 @@ module.exports.getUserGames = ({query: {userId}}, res, next) => {
   .fetch({withRelated: ['games'], require: true})
   .then((usergames) => {
     res.status(200).json(usergames)
-    console.log('usergames', usergames.toJSON())
   })
   .catch((err) => {
     next(err)
