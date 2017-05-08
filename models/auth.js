@@ -38,6 +38,7 @@ const Auth = bookshelf.Model.extend({
 
   // method to make sure user is authenticated
   ensureAuthenticated: (req, res, next) => {
+    console.log('req', req)
     if (!(req.headers && req.headers.authorization)) {
       return res.status(400).json({
         status: 'Please log in'
