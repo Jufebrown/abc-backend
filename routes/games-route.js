@@ -3,8 +3,8 @@
 const {Router} = require('express')
 const router = Router()
 
-const {getAllGames} = require('../controllers/gamesCtrl')
+const {getGamesAll} = require('../controllers/gamesCtrl')
 
-router.get('/games', getGames)
+router.get('/games', getGamesAll)
 
 module.exports = router

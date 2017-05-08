@@ -5,5 +5,5 @@
   {"name":"Cat", "answers_needed":"25", "games_needed":"0"},
   {"name":"Rhino", "answers_needed":"50", "games_needed":"0"},
   {"name":"Elephant", "answers_needed":"100", "games_needed":"0"},
-  {"name":"Whale", "answers_needed":"150", "games_needed":"0"},
+  {"name":"Whale", "answers_needed":"150", "games_needed":"0"}
 ]
