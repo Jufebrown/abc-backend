@@ -6,14 +6,14 @@ const {bookshelf} = require('../db/database')
 // require('./user')
 // require('./userGame')
 
-const Animal = bookshelf.Model.extend({
-  tableName: 'games',
+const Game = bookshelf.Model.extend({
+  tableName: 'games'
   // sets relationship with words
   // words: function () { return this.belongsToMany('Word').through('gameWord')},
 }, {
   // gets all games
-  getAllGames: function () {
-    return this.forge().orderBy('id', 'ASC')
+  getAllGames: function() {
+    return this.forge().orderBy('id', 'ASC').fetchAll()
   }
   // gets all games with a specified user
   // getAllWithRelated: function() {
