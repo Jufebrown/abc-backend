@@ -65,7 +65,7 @@ describe('abc routes', ()=>{
   describe('POST /auth/register', () => {
     it('should register a new user', (done) => {
       chai.request(server)
-      .post('/auth/register')
+      .post('/api/v1/auth/register')
       .send({
         username: 'michael',
         password: 'herman'
