@@ -1,6 +1,5 @@
 `use strict`
 
-const users = require('../users')
 const bcrypt = require('bcryptjs');
 
 exports.seed = function(knex, Promise) {
