@@ -67,8 +67,8 @@ describe('abc routes', ()=>{
       chai.request(server)
       .post('/api/v1/auth/register')
       .send({
-        username: 'michael',
-        password: 'herman'
+        username: 'geronimo',
+        password: 'password'
       })
       .end((err, res) => {
         should.not.exist(err);
@@ -81,6 +81,8 @@ describe('abc routes', ()=>{
       });
     });
   });
+
+
 
   // tests getting all games
   describe(`GET /api/v1/games`, function() {

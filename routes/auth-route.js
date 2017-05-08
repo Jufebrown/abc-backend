@@ -6,7 +6,7 @@ const router = express.Router();
 const localAuth = require('../auth/local');
 const Auth = require('../models/auth');
 
-router.post('/register', (req, res, next)  => {
+router.post('/auth/register', (req, res, next)  => {
   return Auth.createUser(req)
   .then((user) => { return localAuth.encodeToken(user[0]); })
   .then((token) => {
