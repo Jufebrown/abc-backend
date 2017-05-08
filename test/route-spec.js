@@ -35,6 +35,7 @@ describe('auth : local', () => {
   })
 })
 
+// tests for routes
 describe('abc routes', ()=>{
   // does a rollback on test db and then migration and seed before each test run so we know what is in db
   beforeEach(() =>{
@@ -59,6 +60,26 @@ describe('abc routes', ()=>{
           res.body.should.have.key(['games','userAndTheirGames'])
         })
     })
+  });
+
+  describe('POST /auth/register', () => {
+    it('should register a new user', (done) => {
+      chai.request(server)
+      .post('/auth/register')
+      .send({
+        username: 'michael',
+        password: 'herman'
+      })
+      .end((err, res) => {
+        should.not.exist(err);
+        res.redirects.length.should.eql(0);
+        res.status.should.eql(200);
+        res.type.should.eql('application/json');
+        res.body.should.include.keys('status', 'token');
+        res.body.status.should.eql('success');
+        done();
+      });
+    });
   });
 
   // tests getting all games
