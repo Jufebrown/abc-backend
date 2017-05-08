@@ -12,7 +12,8 @@ router.get('/',function (req,res) {
   res.json ({
     "userAndTheirGames": "/api/v1/users/games?userId=<userId>",
     "games": "/api/v1/games",
-    "register": "/api/v1/auth/register"
+    "register": "/api/v1/auth/register",
+    "login": "/api/v1/auth/login"
     // "words" : "/api/v1/words",
     // "friends": "/api/v1/friends"
   })
