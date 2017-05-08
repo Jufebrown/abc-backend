@@ -1,3 +1,5 @@
+`use strict`
+
 const games = require('../games')
 
 exports.seed = function(knex, Promise) {

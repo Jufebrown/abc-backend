@@ -1,3 +1,5 @@
+`use strict`
+
 const friends = require('../friends')
 
 exports.seed = function(knex, Promise) {
