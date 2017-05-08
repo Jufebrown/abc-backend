@@ -3,13 +3,13 @@
 const {bookshelf} = require('../db/database')
 // require('./gameWord')
 // require('./word')
-// require('./user')
-// require('./userGame')
+require('./user')
+require('./userGame')
 
 const Game = bookshelf.Model.extend({
   tableName: 'games',
-  // sets relationship with words
-  user: function () { return this.belongsToMany('User').through('userGame')}
+  // sets relationship with users
+  users: function () { return this.belongsToMany('User').through('userGame')}
   // sets relationship with words
   // words: function () { return this.belongsToMany('Word').through('gameWord')},
 }, {
