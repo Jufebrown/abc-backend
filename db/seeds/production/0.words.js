@@ -1,3 +1,5 @@
+`use strict`
+
 const words = require('../words')
 
 exports.seed = function(knex, Promise) {
