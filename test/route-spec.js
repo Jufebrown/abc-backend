@@ -105,7 +105,7 @@ describe('abc routes', ()=>{
     });
     it('should not login an unregistered user', (done) => {
       chai.request(server)
-      .post('/auth/login')
+      .post('/api/v1/auth/login')
       .send({
         username: 'michael',
         password: 'johnson123'
