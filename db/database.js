@@ -1,3 +1,5 @@
+`use strict`
+
 // this file configures knex and bookshelf
 const environment = process.env.NODE_ENV || 'development';
 const config = require('../knexfile.js')[environment];
