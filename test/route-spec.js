@@ -107,8 +107,8 @@ describe('abc routes', ()=>{
       chai.request(server)
       .post('/api/v1/auth/login')
       .send({
-        username: 'michael',
-        password: 'johnson123'
+        username: 'sid',
+        password: 'viscous'
       })
       .end((err, res) => {
         should.exist(err);
