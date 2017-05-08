@@ -31,7 +31,7 @@ describe('abc routes', ()=>{
           res.should.have.status(200)
           res.should.be.json
           res.should.be.a.object
-          res.body.should.have.key(['games'])
+          res.body.should.have.key(['games','userAndTheirGames'])
         })
     })
   });
