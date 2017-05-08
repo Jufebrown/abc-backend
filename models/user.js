@@ -7,14 +7,11 @@ require('./userGame')
 const User = bookshelf.Model.extend({
   tableName: 'users',
   // sets relationship with games
-  game: function () { return this.belongsToMany('Game').through('userGame')}
+  games: function () { return this.belongsToMany('Game').through('UserGame')}
   // sets relationship with friends
   // friend: function () { return this.belongsToMany('Friend').through('userFriend')},
 }, {
-  // gets single user
-  getSingleUser: function(id) {
-    return this.forge().fetchAll()
-  }
+
 
 })
 
