@@ -10,6 +10,30 @@ const { knex } = require('../db/database')
 const localAuth = require('../auth/local');
 chai.use(chaiHttp)
 
+// tests for user auth
+describe('auth : local', () => {
+  describe('encodeToken()', () => {
+    it('should return a token', (done) => {
+      const results = localAuth.encodeToken({id: 2})
+      should.exist(results)
+      results.should.be.a('string')
+      done()
+    })
+  })
+
+  describe('decodeToken()', () => {
+    it('should return a payload', (done) => {
+      const token = localAuth.encodeToken({id: 2})
+      should.exist(token)
+      token.should.be.a('string')
+      localAuth.decodeToken(token, (err, res) => {
+        should.not.exist(err)
+        res.sub.should.equal(2)
+        done()
+      })
+    })
+  })
+})
 
 describe('abc routes', ()=>{
   // does a rollback on test db and then migration and seed before each test run so we know what is in db
