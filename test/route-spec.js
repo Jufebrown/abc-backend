@@ -50,4 +50,19 @@ describe('abc routes', ()=>{
         })
     })
   })
+
+  // tests getting all games for logged in user
+  describe(`GET /api/v1/games`, function() {
+    it(`should return all games`, function() {
+      return chai.request(server)
+        .get(`/api/v1/games/user="1"`).then(res => {
+          res.should.have.status(200)
+          res.should.be.json
+          res.body.should.be.a.object
+          res.body.should.have.key('games')
+          res.body.games.should.be.a.array
+          res.body.games[0].number_correct.should.equal('4')
+        })
+    })
+  })
 })
