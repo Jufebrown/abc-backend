@@ -31,20 +31,20 @@ exports.up = function(knex, Promise) {
   // adds users_games table
   .createTable('users_games',(t)=>{
     t.increments()
-    t.integer('users_id').unsigned().references('users.id')
-    t.integer('games_id').unsigned().references('games.id')
+    t.integer('user_id').unsigned().references('users.id')
+    t.integer('game_id').unsigned().references('games.id')
   })
   // adds games_words table
   .createTable('games_words',(t)=>{
     t.increments()
-    t.integer('games_id').unsigned().references('games.id')
-    t.integer('words_id').unsigned().references('words.id')
+    t.integer('game_id').unsigned().references('games.id')
+    t.integer('word_id').unsigned().references('words.id')
   })
   // adds users_friends table
   .createTable('users_friends',(t)=>{
     t.increments()
-    t.integer('users_id').unsigned().references('users.id')
-    t.integer('friends_id').unsigned().references('friends.id')
+    t.integer('user_id').unsigned().references('users.id')
+    t.integer('friend_id').unsigned().references('friends.id')
   })
 };
 
