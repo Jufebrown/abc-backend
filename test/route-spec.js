@@ -7,6 +7,7 @@ const should = chai.should()
 const chaiHttp = require('chai-http')
 const server = require('../app')
 const { knex } = require('../db/database')
+const localAuth = require('../auth/local');
 chai.use(chaiHttp)
 
 
