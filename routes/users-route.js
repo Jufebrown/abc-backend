@@ -3,7 +3,7 @@
 const {Router} = require('express')
 const router = Router()
 
-const {getGamesAll} = require('../controllers/usersCtrl')
+const {getUserGames} = require('../controllers/usersCtrl')
 
 router.get('/users/games', getUserGames)
 
