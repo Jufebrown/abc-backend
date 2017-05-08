@@ -82,7 +82,26 @@ describe('abc routes', ()=>{
     });
   });
 
-
+  describe('POST /auth/login', () => {
+    it('should login a user', (done) => {
+      chai.request(server)
+      .post('/auth/login')
+      .send({
+        username: 'jeremy',
+        password: 'johnson123'
+      })
+      .end((err, res) => {
+        should.not.exist(err);
+        res.redirects.length.should.eql(0);
+        res.status.should.eql(200);
+        res.type.should.eql('application/json');
+        res.body.should.include.keys('status', 'token');
+        res.body.status.should.eql('success');
+        should.exist(res.body.token);
+        done();
+      });
+    });
+  });
 
   // tests getting all games
   describe(`GET /api/v1/games`, function() {
