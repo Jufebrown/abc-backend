@@ -172,7 +172,7 @@ describe('abc routes', ()=>{
   })
 
   // tests getting all games for logged in user
-  describe(`GET /api/v1/games`, function() {
+  describe(`GET /api/v1/games?userId=1`, function() {
     it(`should return all games for user 1`, function() {
       return chai.request(server)
         .get(`/api/v1/auth/games?userId=1`).then(res => {

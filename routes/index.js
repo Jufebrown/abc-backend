@@ -10,8 +10,8 @@ router.use(require('./games-route'))
 
 router.get('/', (req,res) => {
   res.json ({
-    "register": "/api/v1/auth/register",
     "login": "/api/v1/auth/login",
+    "register": "/api/v1/auth/register",
     "user": "/api/v1/auth/user",
     "userAndTheirGames": "/api/v1/auth/games?userId=<userId>",
     "games": "/api/v1/games"

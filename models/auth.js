@@ -38,7 +38,7 @@ const Auth = bookshelf.Model.extend({
 
   // method to make sure user is authenticated
   ensureAuthenticated: (req, res, next) => {
-    console.log('req', req)
+    // checks to see if logged in
     if (!(req.headers && req.headers.authorization)) {
       return res.status(400).json({
         status: 'Please log in'
@@ -56,6 +56,7 @@ const Auth = bookshelf.Model.extend({
         // check if the user still exists in the db
         return knex('users').where({id: parseInt(payload.sub)}).first()
         .then((user) => {
+          console.log(user)
           next()
         })
         .catch((err) => {
