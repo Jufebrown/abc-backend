@@ -4,6 +4,8 @@ const Auth = require('../models/auth')
 const userGame = require('../models/userGame')
 const localAuth = require('../auth/local')
 const {knex} = require('../db/database')
+const userFriend = require('../models/userFriend')
+const Friend = require('../models/friend')
 
 module.exports.getUserGames = (req, res, next) => {
   let header = req.headers.authorization.split(' ')
