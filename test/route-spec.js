@@ -130,6 +130,7 @@ describe('abc routes', ()=>{
         password: 'password'
       })
       .end((error, response) => {
+        // console.log('response', response)
         should.not.exist(error)
         chai.request(server)
         .get('/api/v1/auth/user')
