@@ -209,7 +209,7 @@ describe('abc routes', ()=>{
         // console.log('response', response)
         should.not.exist(error)
         chai.request(server)
-        .get(`/api/v1/auth/games?userId=1`)
+        .get(`/api/v1/user/games`)
         .set('authorization', 'Bearer ' + response.body.token)
         .end((err, res) => {
           should.not.exist(err)
