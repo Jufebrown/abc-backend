@@ -7,11 +7,7 @@ const {getUserGames, register, login, makeSureAuthenticated} = require('../contr
 
 router.post('/auth/login', login)
 router.post('/auth/register', register)
-router.get('/auth/user', Auth.ensureAuthenticated, (req, res, next) => {
-  res.status(200).json({
-    status: 'success',
-  })
-})
-router.get('/auth/games', getUserGames)
+router.get('/auth/user', Auth.ensureAuthenticated, makeSureAuthenticated)
+router.get('/auth/games', Auth.ensureAuthenticated, getUserGames)
 
 module.exports = router
