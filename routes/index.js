@@ -13,7 +13,7 @@ router.get('/', (req,res) => {
     "login": "/api/v1/auth/login",
     "register": "/api/v1/auth/register",
     "user": "/api/v1/auth/user",
-    "userAndTheirGames": "/api/v1/auth/games?userId=<userId>",
+    "loggedInUserAndTheirGames": "/api/v1/auth/games",
     "games": "/api/v1/games"
     // "words" : "/api/v1/words",
     // "friends": "/api/v1/friends"
