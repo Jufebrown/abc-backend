@@ -157,9 +157,9 @@ describe('abc routes', ()=>{
     })
   })
 
-  // tests getting all games
-  describe(`GET /api/v1/games`, function() {
-    it(`should return all games`, function() {
+  // tests get all games
+  describe('GET /games', () => {
+    it('should return a success', (done) => {
       chai.request(server)
       .post('/api/v1/auth/login')
       .send({
