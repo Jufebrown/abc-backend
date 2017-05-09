@@ -251,7 +251,7 @@ describe('abc routes', ()=>{
           should.not.exist(err)
           res.status.should.eql(200)
           res.type.should.eql('application/json')
-          // res.body.status.should.eql('success')
+          res.body.friends[0].name.should.eql('Ant')
           done()
         })
       })
