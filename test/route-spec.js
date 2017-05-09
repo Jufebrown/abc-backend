@@ -167,16 +167,19 @@ describe('abc routes', ()=>{
         password: 'password'
       })
       .end((error, response) => {
+        // console.log('response', response)
         should.not.exist(error)
         chai.request(server)
-        .get(`/api/v1/games`)
-        .then(res => {
-          res.should.have.status(200)
-          res.should.be.json
-          res.body.should.be.a.object
-          res.body.should.have.key('games')
+        .get('/api/v1/games')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
           res.body.games.should.be.a.array
-          res.body.games[0].number_correct.should.equal('4')
+          res.body.games[0].number_correct.should.be.eql('4')
+          console.log(res.body.games)
+          done()
         })
       })
     })
@@ -194,7 +197,44 @@ describe('abc routes', ()=>{
   })
 
   // tests getting all games for logged in user
-  describe(`GET /api/v1/games?userId=1`, function() {
+  describe('GET /api/v1/games?userId=1', () => {
+    it('should return a success', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        // console.log('response', response)
+        should.not.exist(error)
+        chai.request(server)
+        .get(`/api/v1/auth/games?userId=1`)
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
+          res.body.status.should.eql('success')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests getting all games for logged in user
+  describe.skip(`GET /api/v1/games?userId=1`, function() {
     it(`should return all games for user 1`, function() {
       return chai.request(server)
         .get(`/api/v1/auth/games?userId=1`).then(res => {
