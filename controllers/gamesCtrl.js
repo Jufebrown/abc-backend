@@ -10,3 +10,14 @@ module.exports.getGamesAll = (req, res, next) => {
   .then(games => res.status(200).json({games}))
   .catch(error => next(error))
 }
+
+module.exports.getGameWords = ({query: {gameId}}, res, next) => {
+  Game.forge({id: gameId})
+  .fetch({withRelated: ['words'], require: true})
+  .then((gameWords) => {
+    res.status(200).json(gameWords)
+  })
+  .catch((err) => {
+    next(err)
+  })
+}
