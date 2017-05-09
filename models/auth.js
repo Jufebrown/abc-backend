@@ -38,10 +38,8 @@ const Auth = bookshelf.Model.extend({
 
   // method to make sure user is authenticated
   ensureAuthenticated: (req, res, next) => {
-    console.log('beginning of ensure')
     // checks to see if logged in
     if (!(req.headers && req.headers.authorization)) {
-      console.log('no headers')
       return res.status(400).json({
         status: 'Please log in'
       })
@@ -62,7 +60,6 @@ const Auth = bookshelf.Model.extend({
           next()
         })
         .catch((err) => {
-          console.log('error from ensure', err)
           res.status(500).json({
             status: 'error'
           })
