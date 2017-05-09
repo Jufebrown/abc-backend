@@ -248,6 +248,43 @@ describe('abc routes', ()=>{
           res.status.should.eql(200)
           res.type.should.eql('application/json')
           res.body.friends[0].name.should.eql('Ant')
+          console.log(res.body)
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests route for getting words used in games
+  describe('GET /games/words', () => {
+    it('should return a all words used in a specified game', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .get('/api/v1/games/words?gameId=1')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
+          console.log(res.body)
           done()
         })
       })
