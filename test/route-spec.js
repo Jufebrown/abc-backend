@@ -159,7 +159,7 @@ describe('abc routes', ()=>{
 
   // tests get all games
   describe('GET /games', () => {
-    it('should return a success', (done) => {
+    it('should return all game if a user is logged in', (done) => {
       chai.request(server)
       .post('/api/v1/auth/login')
       .send({
@@ -197,8 +197,8 @@ describe('abc routes', ()=>{
   })
 
   // tests getting all games for logged in user
-  describe('GET /api/v1/games?userId=1', () => {
-    it('should return a success', (done) => {
+  describe('GET /api/v1/user/games', () => {
+    it('should return all games specifically for logged in user', (done) => {
       chai.request(server)
       .post('/api/v1/auth/login')
       .send({
