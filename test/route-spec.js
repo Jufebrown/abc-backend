@@ -233,5 +233,42 @@ describe('abc routes', ()=>{
     })
   })
 
+  // tests user friends
+  describe('GET /user/friends', () => {
+    it('should return a all friends unlocked by logged in user', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        // console.log('response', response)
+        should.not.exist(error)
+        chai.request(server)
+        .get('/api/v1/user/friends')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
+          // res.body.status.should.eql('success')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
 
 })
