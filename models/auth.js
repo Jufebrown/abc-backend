@@ -58,7 +58,6 @@ const Auth = bookshelf.Model.extend({
         // check if the user still exists in the db
         return knex('users').where({id: parseInt(payload.sub)}).first()
         .then((user) => {
-          console.log(user)
           next()
         })
         .catch((err) => {

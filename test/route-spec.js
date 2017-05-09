@@ -178,7 +178,6 @@ describe('abc routes', ()=>{
           res.type.should.eql('application/json')
           res.body.games.should.be.a.array
           res.body.games[0].number_correct.should.be.eql('4')
-          console.log(res.body.games)
           done()
         })
       })
