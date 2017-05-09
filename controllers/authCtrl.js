@@ -3,15 +3,24 @@
 const Auth = require('../models/auth')
 const userGame = require('../models/userGame')
 const localAuth = require('../auth/local')
+const {knex} = require('../db/database')
 
-module.exports.getUserGames = ({query: {userId}}, res, next) => {
-  Auth.forge({id: userId})
-  .fetch({withRelated: ['games'], require: true})
-  .then((usergames) => {
-    res.status(200).json(usergames)
-  })
-  .catch((err) => {
-    next(err)
+module.exports.getUserGames = (req, res, next) => {
+  let header = req.headers.authorization.split(' ')
+  let token = header[1]
+  localAuth.decodeToken(token, (err, payload) => {
+    return knex('users').where({id: parseInt(payload.sub)}).first()
+    .then((user) => {
+      const id = user.id
+      Auth.forge({id})
+      .fetch({withRelated: ['games'], require: true})
+      .then((usergames) => {
+        res.status(200).json(usergames)
+      })
+      .catch((err) => {
+        next(err)
+      })
+    })
   })
 }
 
