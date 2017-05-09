@@ -3,7 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const Auth = require('../models/auth')
-const {getUserGames, register, login, makeSureAuthenticated} = require('../controllers/authCtrl')
+const {getUserGames, register, login, makeSureAuthenticated, getUserFriends} = require('../controllers/authCtrl')
 
 router.post('/auth/login', login)
 router.post('/auth/register', register)
