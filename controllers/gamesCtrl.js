@@ -7,6 +7,6 @@ const UserGame = require('../models/userGame')
 // responds with status code 200 and json of games if successful
 module.exports.getGamesAll = (req, res, next) => {
   Game.getAllGames()
-    .then(games => res.status(200).json({games}))
-    .catch(error => next(error))
+  .then(games => res.status(200).json({games}))
+  .catch(error => next(error))
 }

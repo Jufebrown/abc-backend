@@ -1,3 +1,5 @@
+`use strict`
+
 const games_words = require('../games_words')
 
 exports.seed = function(knex, Promise) {
