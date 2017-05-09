@@ -12,10 +12,11 @@ router.get('/', (req,res) => {
   res.json ({
     "login": "/api/v1/auth/login",
     "register": "/api/v1/auth/register",
-    "user": "/api/v1/auth/user",
-    "gamesForLoggedInUser": "/api/v1/user/games",
-    "friendsForLoggedInUser": "/api/v1/user/friends",
-    "games": "/api/v1/games"
+    "getLoggedInUser": "/api/v1/auth/user",
+    "getGamesForLoggedInUser": "/api/v1/user/games",
+    "getFriendsForLoggedInUser": "/api/v1/user/friends",
+    "getAllgames": "/api/v1/games",
+    "getWordsForSpecifiedGame": "/api/v1/games/words?gameId=<gameId>"
     // "words" : "/api/v1/words",
   })
 })
