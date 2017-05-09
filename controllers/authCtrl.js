@@ -26,6 +26,25 @@ module.exports.getUserGames = (req, res, next) => {
   })
 }
 
+module.exports.getUserFriends = (req, res, next) => {
+  let header = req.headers.authorization.split(' ')
+  let token = header[1]
+  localAuth.decodeToken(token, (err, payload) => {
+    return knex('users').where({id: parseInt(payload.sub)}).first()
+    .then((user) => {
+      const id = user.id
+      Auth.forge({id})
+      .fetch({withRelated: ['friends'], require: true})
+      .then((userfriends) => {
+        res.status(200).json(userfriends)
+      })
+      .catch((err) => {
+        next(err)
+      })
+    })
+  })
+}
+
 module.exports.register = (req, res, next) => {
   Auth.createUser(req)
   .then((user) => { return localAuth.encodeToken(user[0]) })
