@@ -8,6 +8,7 @@ const {getUserGames, register, login, makeSureAuthenticated, getUserFriends} = r
 router.post('/auth/login', login)
 router.post('/auth/register', register)
 router.get('/auth/user', Auth.ensureAuthenticated, makeSureAuthenticated)
-router.get('/auth/games', Auth.ensureAuthenticated, getUserGames)
+router.get('/user/games', Auth.ensureAuthenticated, getUserGames)
+router.get('/user/friends', Auth.ensureAuthenticated, getUserFriends)
 
 module.exports = router
