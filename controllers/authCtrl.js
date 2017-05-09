@@ -3,15 +3,45 @@
 const Auth = require('../models/auth')
 const userGame = require('../models/userGame')
 const localAuth = require('../auth/local')
+const {knex} = require('../db/database')
+const userFriend = require('../models/userFriend')
+const Friend = require('../models/friend')
 
-module.exports.getUserGames = ({query: {userId}}, res, next) => {
-  Auth.forge({id: userId})
-  .fetch({withRelated: ['games'], require: true})
-  .then((usergames) => {
-    res.status(200).json(usergames)
+module.exports.getUserGames = (req, res, next) => {
+  let header = req.headers.authorization.split(' ')
+  let token = header[1]
+  localAuth.decodeToken(token, (err, payload) => {
+    return knex('users').where({id: parseInt(payload.sub)}).first()
+    .then((user) => {
+      const id = user.id
+      Auth.forge({id})
+      .fetch({withRelated: ['games'], require: true})
+      .then((usergames) => {
+        res.status(200).json(usergames)
+      })
+      .catch((err) => {
+        next(err)
+      })
+    })
   })
-  .catch((err) => {
-    next(err)
+}
+
+module.exports.getUserFriends = (req, res, next) => {
+  let header = req.headers.authorization.split(' ')
+  let token = header[1]
+  localAuth.decodeToken(token, (err, payload) => {
+    return knex('users').where({id: parseInt(payload.sub)}).first()
+    .then((user) => {
+      const id = user.id
+      Auth.forge({id})
+      .fetch({withRelated: ['friends'], require: true})
+      .then((userfriends) => {
+        res.status(200).json(userfriends)
+      })
+      .catch((err) => {
+        next(err)
+      })
+    })
   })
 }
 
@@ -54,10 +84,7 @@ module.exports.login = (req, res, next) => {
 }
 
 module.exports.makeSureAuthenticated = (req, res, next) => {
-  Auth.ensureAuthenticated(req, res, next)
-  .then((res) => {
-    res.status(200).json({
-      status: 'success',
-    })
+  res.status(200).json({
+    status: 'success',
   })
 }

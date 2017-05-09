@@ -57,7 +57,7 @@ describe('abc routes', ()=>{
           res.should.have.status(200)
           res.should.be.json
           res.should.be.a.object
-          res.body.should.have.key(['games','userAndTheirGames', 'register', 'login', 'user'])
+          res.body.should.have.key(['games','gamesForLoggedInUser', 'register', 'login', 'user', 'friendsForLoggedInUser'])
         })
     })
   });
@@ -156,33 +156,113 @@ describe('abc routes', ()=>{
     })
   })
 
-  // tests getting all games
-  describe(`GET /api/v1/games`, function() {
-    it(`should return all games`, function() {
-      return chai.request(server)
-        .get(`/api/v1/games`).then(res => {
-          res.should.have.status(200)
-          res.should.be.json
-          res.body.should.be.a.object
-          res.body.should.have.key('games')
+  // tests get all games
+  describe('GET /games', () => {
+    it('should return all game if a user is logged in', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .get('/api/v1/games')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
           res.body.games.should.be.a.array
-          res.body.games[0].number_correct.should.equal('4')
+          res.body.games[0].number_correct.should.be.eql('4')
+          done()
         })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
     })
   })
 
   // tests getting all games for logged in user
-  describe(`GET /api/v1/games?userId=1`, function() {
-    it(`should return all games for user 1`, function() {
-      return chai.request(server)
-        .get(`/api/v1/auth/games?userId=1`).then(res => {
-          res.should.have.status(200)
-          res.should.be.json
-          res.body.should.be.a.object
-          res.body.should.have.key(["admin", "created_at", "games", "id", "password", "username"])
+  describe('GET /api/v1/user/games', () => {
+    it('should return all games specifically for logged in user', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .get(`/api/v1/user/games`)
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
           res.body.games.should.be.a.array
           res.body.games[0].number_correct.should.equal('4')
+          done()
         })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
     })
   })
+
+  // tests user friends
+  describe('GET /user/friends', () => {
+    it('should return a all friends unlocked by logged in user', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .get('/api/v1/user/friends')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
+          res.body.friends[0].name.should.eql('Ant')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
 })

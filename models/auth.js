@@ -10,7 +10,9 @@ require('./userGame')
 const Auth = bookshelf.Model.extend({
   tableName: 'users',
   // sets relationship with games
-  games: function () { return this.belongsToMany('Game').through('UserGame')}
+  games: function () { return this.belongsToMany('Game').through('UserGame')},
+  // sets relationship with friends
+  friends: function () { return this.belongsToMany('Friend').through('UserFriend')}
 }, {
   // method for registering new user
   createUser: (req, res, next) => {
@@ -56,7 +58,6 @@ const Auth = bookshelf.Model.extend({
         // check if the user still exists in the db
         return knex('users').where({id: parseInt(payload.sub)}).first()
         .then((user) => {
-          console.log(user)
           next()
         })
         .catch((err) => {
