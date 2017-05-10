@@ -8,6 +8,16 @@ module.exports.getWord = ({params: {correct_word}}, res, next) => {
     res.status(200).json(word)
   })
   .catch( (error) => {
-    next(error);
-  });
-};
+    next(error)
+  })
+}
+
+module.exports.addWord = ({body}, res, next) => {
+  console.log('body', body)
+  Word.forge(body)
+  .save()
+  .then(() => res.status(201).json({"msg": "good"}))
+  .catch((error) => {
+    next(error)
+  })
+}
