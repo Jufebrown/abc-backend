@@ -16,8 +16,8 @@ router.get('/', (req,res) => {
     "getGamesForLoggedInUser": "/api/v1/user/games",
     "getFriendsForLoggedInUser": "/api/v1/user/friends",
     "getAllgames": "/api/v1/games",
+    "getWord" : "/api/v1/word/:<correct_word>",
     "getWordsForSpecifiedGame": "/api/v1/games/words?gameId=<gameId>"
-    // "words" : "/api/v1/words",
   })
 })
 
