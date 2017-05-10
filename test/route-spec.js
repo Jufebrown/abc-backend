@@ -319,8 +319,42 @@ describe('abc routes', ()=>{
           should.not.exist(err)
           res.status.should.eql(200)
           res.type.should.eql('application/json')
-          console.log(res.body)
-          // res.body.words[0].correct_word.should.eql('ant')
+          res.body.correct_word.should.eql('ant')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests route for adding word to words table
+  describe('POST /word/:<correct_word>', () => {
+    it('should add a word if a user is logged in', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .post('/api/v1/word/husky')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          // res.type.should.eql('application/json')
           done()
         })
       })

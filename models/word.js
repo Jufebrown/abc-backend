@@ -18,8 +18,8 @@ const Word = bookshelf.Model.extend({
   getSingleWord: function(correct_word) {
     return this.forge({correct_word})
     .fetch()
-    .then( (director) => {
-      return director
+    .then( (word) => {
+      return word
     })
     .catch( (error) => {
       return error

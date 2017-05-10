@@ -5,7 +5,7 @@ const router = Router()
 
 router.use(require('./auth-route'))
 router.use(require('./games-route'))
-// router.use(require('./words-route'))
+router.use(require('./words-route'))
 // router.use(require('./friends-route'))
 
 router.get('/', (req,res) => {
