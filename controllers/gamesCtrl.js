@@ -23,3 +23,30 @@ module.exports.getGameWords = ({query: {gameId}}, res, next) => {
     next(err)
   })
 }
+
+module.exports.addGame = (req, res, next) => {
+  // console.log('body', req.body)
+  let header = req.headers.authorization.split(' ')
+  let token = header[1]
+  Game.forge(req.body)
+  .save()
+  .then((res) => {
+    // console.log('res', res.toJSON())
+    localAuth.decodeToken(token, (err, payload) => {
+      return knex('users').where({id: parseInt(payload.sub)}).first()
+      .then((user) => {
+        const user_id = user.id
+        const game_id = res.toJSON().id
+        // console.log('user_id, game_id', user_id, game_id)
+        UserGame.forge({user_id, game_id})
+        .save()
+      })
+    })
+  })
+  .then((userGame) => {
+    res.status(201).json(userGame)
+  })
+  .catch((err) => {
+    next(err)
+  })
+}
