@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
     t.increments()
     t.string('number_correct')
     t.string('number_asked')
-    t.boolean('won')
+    t.boolean('won').defaultTo('false')
   })
   // adds words table
   .createTable('words', (t)=> {

@@ -57,7 +57,7 @@ describe('abc routes', ()=>{
           res.should.have.status(200)
           res.should.be.json
           res.should.be.a.object
-          res.body.should.have.key(['games','gamesForLoggedInUser', 'register', 'login', 'user', 'friendsForLoggedInUser'])
+          res.body.should.have.key(['getAllgames','getGamesForLoggedInUser', 'register', 'login', 'getLoggedInUser', 'getFriendsForLoggedInUser', 'getWordsForSpecifiedGame', 'getWord', 'addWord', 'addGame', 'updateGame'])
         })
     })
   });
@@ -248,6 +248,195 @@ describe('abc routes', ()=>{
           res.status.should.eql(200)
           res.type.should.eql('application/json')
           res.body.friends[0].name.should.eql('Ant')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests route for getting words used in games
+  describe('GET /games/words', () => {
+    it('should return a all words used in a specified game', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .get('/api/v1/games/words?gameId=1')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
+          res.body.words[0].correct_word.should.eql('ant')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests route for getting single word
+  describe('GET /word/:<correct_word>', () => {
+    it('should return a single word if a user is logged in', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .get('/api/v1/word/ant')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
+          res.body.correct_word.should.eql('ant')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests route for adding word to words table
+  describe('POST /word/:<correct_word>', () => {
+    it('should add a word if a user is logged in', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .post('/api/v1/words/new')
+        .send({correct_word: 'husky'})
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(201)
+          chai.request(server)
+          .get('/api/v1/word/husky')
+          .set('authorization', 'Bearer ' + response.body.token)
+          .end((err, res) => {
+            should.not.exist(err)
+            res.status.should.eql(200)
+            res.type.should.eql('application/json')
+            res.body.correct_word.should.eql('husky')
+            // console.log('word just added:', res.body.correct_word)
+            done()
+          })
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests route for adding a game to games table and users_games table
+  describe('GET /games/new', () => {
+    it('should add a game to the game table and the users_games table', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .post('/api/v1/games/new')
+        .send({number_asked: 1})
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(201)
+          // res.type.should.eql('application/json')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
+
+  // tests route for updating a game
+  describe('PATCH /games/:<id>', () => {
+    it('should update a game if a user is logged in', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .patch('/api/v1/games/1')
+        .send({number_asked: 8, number_correct: 5})
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(200)
+          res.type.should.eql('application/json')
           done()
         })
       })

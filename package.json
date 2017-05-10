@@ -6,7 +6,7 @@
   "scripts": {
     "db:reset": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "db:reset-test": "knex migrate:rollback --env test && knex migrate:latest --env test && knex seed:run --env test",
-    "start": "nodemon bin/zoo",
+    "start": "nodemon bin/abc",
     "test": "nodemon --exec \"mocha --recursive\" -R list"
   },
   "repository": {
