@@ -1,7 +1,6 @@
 'use strict'
 
 const Game = require('../models/game')
-const UserGame = require('../models/userGame')
 
 // Fetches games from database when called
 // responds with status code 200 and json of games if successful
