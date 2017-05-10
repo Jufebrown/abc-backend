@@ -355,8 +355,17 @@ describe('abc routes', ()=>{
         .end((err, res) => {
           should.not.exist(err)
           res.status.should.eql(201)
-          // res.type.should.eql('application/json')
-          done()
+          chai.request(server)
+          .get('/api/v1/word/husky')
+          .set('authorization', 'Bearer ' + response.body.token)
+          .end((err, res) => {
+            should.not.exist(err)
+            res.status.should.eql(200)
+            res.type.should.eql('application/json')
+            res.body.correct_word.should.eql('husky')
+            // console.log('word just added:', res.body.correct_word)
+            done()
+          })
         })
       })
     })
@@ -372,5 +381,7 @@ describe('abc routes', ()=>{
       })
     })
   })
+
+
 
 })
