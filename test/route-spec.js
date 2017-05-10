@@ -382,6 +382,39 @@ describe('abc routes', ()=>{
     })
   })
 
-
+  // tests route for adding a game to games table and users_games table
+  describe('GET /games/new', () => {
+    it('should add a game to the game table and the users_games table', (done) => {
+      chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        username: 'jufe',
+        password: 'password'
+      })
+      .end((error, response) => {
+        should.not.exist(error)
+        chai.request(server)
+        .post('/api/v1/games/new')
+        .set('authorization', 'Bearer ' + response.body.token)
+        .end((err, res) => {
+          should.not.exist(err)
+          res.status.should.eql(201)
+          // res.type.should.eql('application/json')
+          done()
+        })
+      })
+    })
+    it('should throw an error if a user is not logged in', (done) => {
+      chai.request(server)
+      .get('/api/v1/auth/user')
+      .end((err, res) => {
+        should.exist(err)
+        res.status.should.eql(400)
+        res.type.should.eql('application/json')
+        res.body.status.should.eql('Please log in')
+        done()
+      })
+    })
+  })
 
 })
