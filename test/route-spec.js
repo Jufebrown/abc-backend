@@ -313,7 +313,7 @@ describe('abc routes', ()=>{
       .end((error, response) => {
         should.not.exist(error)
         chai.request(server)
-        .get('/api/v1/word/:ant')
+        .get('/api/v1/word/ant')
         .set('authorization', 'Bearer ' + response.body.token)
         .end((err, res) => {
           should.not.exist(err)
