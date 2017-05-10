@@ -19,6 +19,7 @@ router.get('/', (req,res) => {
     "getWord" : "/api/v1/word/:<correct_word>",
     "addWord": "/api/v1/words/new",
     "addGame": "/api/v1/games/new",
+    "updateGame": "/api/v1/games/:<gameId>",
     "getWordsForSpecifiedGame": "/api/v1/games/words?gameId=<gameId>"
   })
 })
