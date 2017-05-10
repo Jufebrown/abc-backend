@@ -12,7 +12,20 @@ const Word = bookshelf.Model.extend({
   // gets all games
   getAllWords: function() {
     return this.forge().orderBy('id', 'ASC').fetchAll()
+  },
+
+  // gets a single word (used to check if word is already in db)
+  getSingleWord: function(correct_word) {
+    return this.forge({correct_word})
+    .fetch()
+    .then( (director) => {
+      return director
+    })
+    .catch( (error) => {
+      return error
+    })
   }
+
 })
 
 module.exports = bookshelf.model('Word', Word)
