@@ -395,6 +395,7 @@ describe('abc routes', ()=>{
         should.not.exist(error)
         chai.request(server)
         .post('/api/v1/games/new')
+        .send({number_asked: 1})
         .set('authorization', 'Bearer ' + response.body.token)
         .end((err, res) => {
           should.not.exist(err)
