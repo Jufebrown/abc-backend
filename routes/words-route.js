@@ -5,6 +5,6 @@ const router = Router()
 const Auth = require('../models/auth')
 const {getWord} = require('../controllers/wordsCtrl')
 
-router.get('/word', Auth.ensureAuthenticated, getWord)
+router.get('/word/:correct_word', Auth.ensureAuthenticated, getWord)
 
 module.exports = router
