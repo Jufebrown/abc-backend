@@ -349,11 +349,12 @@ describe('abc routes', ()=>{
       .end((error, response) => {
         should.not.exist(error)
         chai.request(server)
-        .post('/api/v1/word/husky')
+        .post('/api/v1/words/new')
+        .send({correct_word: 'husky'})
         .set('authorization', 'Bearer ' + response.body.token)
         .end((err, res) => {
           should.not.exist(err)
-          res.status.should.eql(200)
+          res.status.should.eql(201)
           // res.type.should.eql('application/json')
           done()
         })
