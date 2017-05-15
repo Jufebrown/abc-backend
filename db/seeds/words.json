@@ -206,5 +206,15 @@
   {"correct_word":"diamondback"},
   {"correct_word":"earwig"},
   {"correct_word":"baboon"},
+  {"correct_word":"mammal"},
+  {"correct_word":"doggy"},
+  {"correct_word":"kitty"},
+  {"correct_word":"kitty cat"},
+  {"correct_word":"kitten"},
+  {"correct_word":"leopard"},
+  {"correct_word":"zebra mussel"},
+  {"correct_word":"miniature schnauzer"},
+  {"correct_word":"schnauzer"},
+  {"correct_word":"koala bear"},
   {"correct_word":"field mouse"}
 ]
