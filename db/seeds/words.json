@@ -182,5 +182,16 @@
   {"correct_word":"lizard"},
   {"correct_word":"ibis"},
   {"correct_word":"impala"},
-  {"correct_word":"rebok"}
+  {"correct_word":"rebok"},
+  {"correct_word":"bengal tiger"},
+  {"correct_word":"dinosaur"},
+  {"correct_word":"snake"},
+  {"correct_word":"roadrunner"},
+  {"correct_word":"killer bee"},
+  {"correct_word":"jackrabbit"},
+  {"correct_word":"frog"},
+  {"correct_word":"newt"},
+  {"correct_word":"chihuahua"},
+  {"correct_word":"dinosaur"},
+  {"correct_word":"field mouse"}
 ]
