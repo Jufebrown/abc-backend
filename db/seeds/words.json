@@ -218,5 +218,12 @@
   {"correct_word":"koala bear"},
   {"correct_word":"monkey"},
   {"correct_word":"jaguar"},
+  {"correct_word":"blue whale"},
+  {"correct_word":"terrapin"},
+  {"correct_word":"robbin"},
+  {"correct_word":"urchin"},
+  {"correct_word":"nightingale"},
+  {"correct_word":"primate"},
+  {"correct_word":"ferret"},
   {"correct_word":"field mouse"}
 ]
