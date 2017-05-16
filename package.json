@@ -1,0 +1,41 @@
+{
+  "name": "abc-backend",
+  "version": "1.0.0",
+  "description": "api for Aidan's Bestial Companions",
+  "main": "index.js",
+  "scripts": {
+    "db:reset": "knex migrate:rollback && knex migrate:latest && knex seed:run",
+    "db:reset-test": "knex migrate:rollback --env test && knex migrate:latest --env test && knex seed:run --env test",
+    "start": "nodemon bin/abc",
+    "test": "nodemon --exec \"mocha --recursive\" -R list"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jufebrown/abc-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jufebrown/abc-backend/issues"
+  },
+  "homepage": "https://github.com/Jufebrown/abc-backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.17.1",
+    "bookshelf": "^0.10.3",
+    "bookshelf-cascade-delete": "^2.0.1",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "jwt-simple": "^0.5.1",
+    "knex": "^0.13.0",
+    "moment": "^2.18.1",
+    "pg": "^6.1.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "morgan": "^1.8.1",
+    "mocha": "^3.3.0"
+  }
+}
