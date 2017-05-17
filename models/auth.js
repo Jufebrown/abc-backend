@@ -48,6 +48,7 @@ const Auth = bookshelf.Model.extend({
     }
     // decode the token
     let header = req.headers.authorization.split(' ')
+    console.log('header in ensureAuthenticated', header)
     let token = header[1]
     localAuth.decodeToken(token, (err, payload) => {
       if (err) {
@@ -61,6 +62,7 @@ const Auth = bookshelf.Model.extend({
           next()
         })
         .catch((err) => {
+          console.log('err from ensureAuthenticated catch', err)
           res.status(500).json({
             status: 'error'
           })
