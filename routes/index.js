@@ -1,13 +1,14 @@
 'use strict'
 
+// requirements and variable declarations
 const { Router } = require('express')
 const router = Router()
 
 router.use(require('./auth-route'))
 router.use(require('./games-route'))
 router.use(require('./words-route'))
-// router.use(require('./friends-route'))
 
+// lists available endpoints
 router.get('/', (req,res) => {
   res.json ({
     "login": "/api/v1/auth/login",

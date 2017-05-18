@@ -9,7 +9,7 @@ const Word = bookshelf.Model.extend({
   // sets relationship with games
   games: function () { return this.belongsToMany('Game').through('GameWord')}
 }, {
-  // gets all games
+  // gets all words
   getAllWords: function() {
     return this.forge().orderBy('id', 'ASC').fetchAll()
   },

@@ -10,7 +10,7 @@ const cascadeDelete = require('bookshelf-cascade-delete');
 
 // registry plugin resolves circular dependencies
 bookshelf.plugin('registry');
-// cascade delete automatically deletes related entries from join tables
+// cascade delete automatically deletes related entries from join tables. (not currently deleting anything so this isn't really needed)
 bookshelf.plugin(cascadeDelete);
 
 module.exports = {knex, bookshelf}

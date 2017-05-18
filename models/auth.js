@@ -1,5 +1,6 @@
 `use strict`
 
+// requirements and variable declarations
 const bcrypt = require('bcryptjs')
 const {bookshelf, knex} = require('../db/database')
 const localAuth = require('../auth/local')

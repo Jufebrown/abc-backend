@@ -2,6 +2,7 @@
 
 const Word = require('../models/word')
 
+// checks to see if a word is in db (gets the word)
 module.exports.getWord = ({params: {correct_word}}, res, next) => {
   Word.getSingleWord(correct_word)
   .then( (word) => {
@@ -12,6 +13,7 @@ module.exports.getWord = ({params: {correct_word}}, res, next) => {
   })
 }
 
+// adds a word to the db
 module.exports.addWord = ({body}, res, next) => {
   Word.forge(body)
   .save()
