@@ -51,9 +51,10 @@ module.exports.addGame = (req, res, next) => {
 module.exports.updateGame = (req,res,next) =>{
   const number_correct = req.body.number_correct
   const number_asked = req.body.number_asked
+  const number_unique = req.body.number_unique
   const {gameId} = req.params
   const id = gameId
-  Game.updateGame(id, number_asked, number_correct)
+  Game.updateGame(id, number_asked, number_correct, number_unique)
   .then(game => res.status(200).json(game))
   .catch(err => next(err))
 }
