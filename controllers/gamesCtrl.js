@@ -1,5 +1,6 @@
 'use strict'
 
+// requirements and variable declarations
 const Game = require('../models/game')
 const UserGame = require('../models/userGame')
 const localAuth = require('../auth/local')
@@ -13,6 +14,7 @@ module.exports.getGamesAll = (req, res, next) => {
   .catch(error => next(error))
 }
 
+// gets a specified game and the words that were used in it
 module.exports.getGameWords = ({query: {gameId}}, res, next) => {
   Game.forge({id: gameId})
   .fetch({withRelated: ['words'], require: true})
@@ -24,14 +26,17 @@ module.exports.getGameWords = ({query: {gameId}}, res, next) => {
   })
 }
 
+// adds a new game to games table and the users_games table
 module.exports.addGame = (req, res, next) => {
-  // console.log('body', req.body)
   let header = req.headers.authorization.split(' ')
   let token = header[1]
+  // saves the game
   Game.forge(req.body)
   .save()
   .then((game) => {
+    // sends back success status and game object
     res.status(201).json(game)
+    // gets user id and adds an entry to the users_games table
     localAuth.decodeToken(token, (err, payload) => {
       return knex('users').where({id: parseInt(payload.sub)}).first()
       .then((user) => {
@@ -48,6 +53,7 @@ module.exports.addGame = (req, res, next) => {
   })
 }
 
+// updates specified game
 module.exports.updateGame = (req,res,next) =>{
   const number_correct = req.body.number_correct
   const number_asked = req.body.number_asked
