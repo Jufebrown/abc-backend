@@ -32,7 +32,6 @@ module.exports.addGame = (req, res, next) => {
   .save()
   .then((game) => {
     res.status(201).json(game)
-    console.log(game)
     localAuth.decodeToken(token, (err, payload) => {
       return knex('users').where({id: parseInt(payload.sub)}).first()
       .then((user) => {
@@ -54,8 +53,6 @@ module.exports.updateGame = (req,res,next) =>{
   const number_asked = req.body.number_asked
   const {gameId} = req.params
   const id = gameId
-  console.log("req.params", req.params)
-  console.log("id, number_asked, number_correct", id, number_asked, number_correct)
   Game.updateGame(id, number_asked, number_correct)
   .then(game => res.status(200).json(game))
   .catch(err => next(err))

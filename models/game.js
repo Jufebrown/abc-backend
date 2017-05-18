@@ -19,7 +19,6 @@ const Game = bookshelf.Model.extend({
   },
 
   updateGame: function(id, number_asked, number_correct) {
-    console.log('id, number_asked, number_correct from updateGame', id, number_asked, number_correct)
     return this.forge({id}).save({number_asked, number_correct})
     .then( (edit) =>{
       return{"msg" : "edited successfully"}
