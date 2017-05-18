@@ -25,17 +25,29 @@ Authentication is handled with JSON web tokens. A user token is generated on log
 The server-side application is a RESTful api. Currently the endpoints are:
 
 {
+
   "login": "https://warm-harbor-25906.herokuapp.com/api/v1/auth/login",
+
   "register": "https://warm-harbor-25906.herokuapp.com/api/v1/auth/register",
+
   "getLoggedInUser": "https://warm-harbor-25906.herokuapp.com/api/v1/auth/user",
+
   "getGamesForLoggedInUser": "https://warm-harbor-25906.herokuapp.com/api/v1/user/games",
+
   "getFriendsForLoggedInUser": "https://warm-harbor-25906.herokuapp.com/api/v1/user/friends",
+
   "getAllgames": "https://warm-harbor-25906.herokuapp.com/api/v1/games",
+
   "getWord": "https://warm-harbor-25906.herokuapp.com/api/v1/word/:<correct_word>",
+
   "addWord": "https://warm-harbor-25906.herokuapp.com/api/v1/words/new",
+
   "addGame": "https://warm-harbor-25906.herokuapp.com/api/v1/games/new",
+
   "updateGame": "https://warm-harbor-25906.herokuapp.com/api/v1/games/:<gameId>",
+
   "getWordsForSpecifiedGame": "https://warm-harbor-25906.herokuapp.com/api/v1/games/words?gameId=<gameId>"
+
 }
 
 More endpoints may be added to accommodate future statistical tracking.
