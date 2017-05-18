@@ -18,6 +18,7 @@ const Game = bookshelf.Model.extend({
     return this.forge().orderBy('id', 'ASC').fetchAll()
   },
 
+  // updates game
   updateGame: function(id, number_asked, number_correct, number_unique) {
     return this.forge({id}).save({number_asked, number_correct, number_unique})
     .then( (edit) =>{
