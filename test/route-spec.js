@@ -383,7 +383,7 @@ describe('abc routes', ()=>{
   })
 
   // tests route for adding a game to games table and users_games table
-  describe('GET /games/new', () => {
+  describe('POST /games/new', () => {
     it('should add a game to the game table and the users_games table', (done) => {
       chai.request(server)
       .post('/api/v1/auth/login')
