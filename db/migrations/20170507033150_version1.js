@@ -12,9 +12,9 @@ exports.up = function(knex, Promise) {
   // adds games table
   .createTable('games', (t)=> {
     t.increments()
-    t.string('number_correct')
-    t.string('number_asked')
-    t.boolean('won').defaultTo('false')
+    t.integer('number_correct')
+    t.integer('number_asked')
+    t.integer('number_unique')
   })
   // adds words table
   .createTable('words', (t)=> {

@@ -30,21 +30,18 @@ module.exports.addGame = (req, res, next) => {
   let token = header[1]
   Game.forge(req.body)
   .save()
-  .then((res) => {
-    // console.log('res', res.toJSON())
+  .then((game) => {
+    res.status(201).json(game)
     localAuth.decodeToken(token, (err, payload) => {
       return knex('users').where({id: parseInt(payload.sub)}).first()
       .then((user) => {
         const user_id = user.id
-        const game_id = res.toJSON().id
+        const game_id = game.toJSON().id
         // console.log('user_id, game_id', user_id, game_id)
         UserGame.forge({user_id, game_id})
         .save()
       })
     })
-  })
-  .then((userGame) => {
-    res.status(201).json(userGame)
   })
   .catch((err) => {
     next(err)
@@ -54,9 +51,10 @@ module.exports.addGame = (req, res, next) => {
 module.exports.updateGame = (req,res,next) =>{
   const number_correct = req.body.number_correct
   const number_asked = req.body.number_asked
-  const won = req.body.won
-  const {id} = req.params
-  Game.updateGame(id, number_asked, number_correct, won)
+  const number_unique = req.body.number_unique
+  const {gameId} = req.params
+  const id = gameId
+  Game.updateGame(id, number_asked, number_correct, number_unique)
   .then(game => res.status(200).json(game))
   .catch(err => next(err))
 }

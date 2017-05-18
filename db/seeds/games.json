@@ -1,4 +1,4 @@
 [
-  {"number_correct":"4", "number_asked":"7", "won":"false"},
-  {"number_correct":"26", "number_asked":"26", "won":"true"}
+  {"number_correct":"4", "number_asked":"7", "number_unique":"4"},
+  {"number_correct":"26", "number_asked":"26", "number_unique":"11"}
 ]
