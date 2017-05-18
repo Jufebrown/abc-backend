@@ -1,9 +1,11 @@
 `use strict`
 
+// requirements and variable declarations
 const Auth = require('../models/auth')
 const localAuth = require('../auth/local')
 const {knex} = require('../db/database')
 const Friend = require('../models/friend')
+
 
 module.exports.getUserGames = (req, res, next) => {
   let header = req.headers.authorization.split(' ')
