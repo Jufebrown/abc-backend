@@ -12,6 +12,7 @@ chai.use(chaiHttp)
 
 // tests for user auth
 describe('auth : local', () => {
+  // test for encoding token
   describe('encodeToken()', () => {
     it('should return a token', (done) => {
       const results = localAuth.encodeToken({id: 2})
@@ -22,6 +23,7 @@ describe('auth : local', () => {
   })
 
   describe('decodeToken()', () => {
+    // test for decoding token
     it('should return a payload', (done) => {
       const token = localAuth.encodeToken({id: 2})
       should.exist(token)
@@ -57,6 +59,7 @@ describe('abc routes', ()=>{
           res.should.have.status(200)
           res.should.be.json
           res.should.be.a.object
+          // checks for ALL route keys - will exit test if missing any
           res.body.should.have.key(['getAllgames','getGamesForLoggedInUser', 'register', 'login', 'getLoggedInUser', 'getFriendsForLoggedInUser', 'getWordsForSpecifiedGame', 'getWord', 'addWord', 'addGame', 'updateGame'])
         })
     })
