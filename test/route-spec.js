@@ -175,7 +175,7 @@ describe('abc routes', ()=>{
           res.status.should.eql(200)
           res.type.should.eql('application/json')
           res.body.games.should.be.a.array
-          res.body.games[0].number_correct.should.be.eql('4')
+          res.body.games[0].number_correct.should.be.eql(4)
           done()
         })
       })
@@ -211,7 +211,7 @@ describe('abc routes', ()=>{
           should.not.exist(err)
           res.status.should.eql(200)
           res.body.games.should.be.a.array
-          res.body.games[0].number_correct.should.equal('4')
+          res.body.games[0].number_correct.should.equal(4)
           done()
         })
       })
